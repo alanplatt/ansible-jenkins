@@ -10,6 +10,8 @@ provisioner:
   ansible_verbosity: 2
   ansible_diff: true
   ansible_extra_flags: <%= ENV['ANSIBLE_EXTRA_FLAGS'] %>
+  ansible_version: 2.2.0.0
+  require_pip: true
 
 platforms:
   - name: ubuntu-14.04
