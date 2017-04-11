@@ -20,10 +20,14 @@ platforms:
 suites:
   - name: master
     driver:
+      customize:
+        memory: 1024
       network:
         - ["private_network", { ip: "172.29.129.172" }]
 
   - name: slave
     driver:
+      customize:
+        memory: 1024
       network:
         - ["private_network", { ip: "172.29.129.191" }]
