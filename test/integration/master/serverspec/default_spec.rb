@@ -16,7 +16,7 @@ jenkins_plugins = %w(
 jenkins_startup_script_config  = '/etc/default/jenkins'
 if os[:family] =~ /centos|redhat/
   jenkins_startup_script_config  = '/etc/sysconfig/jenkins'
-  jenkins_prereq_pkgs = %w( curl unzip git python-devel python-pip )
+  jenkins_prereq_pkgs = %w( curl unzip git python-devel )
 end
 
 jenkins_prereq_pkgs.each do |pkg|

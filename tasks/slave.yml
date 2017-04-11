@@ -67,6 +67,10 @@
     group:  root
     mode:   0755
   notify: Restart jenkins slave
+
+- name: Reload systemd manager configuration | RedHat
+  command: /bin/systemctl daemon-reload
+  when: ansible_os_family|lower == 'redhat'
  
 - name: Start jenkins slave
   service: name=jenkins-slave enabled=yes state=started
