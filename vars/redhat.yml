@@ -5,7 +5,6 @@ jenkins_prereq_pkgs:
   - unzip
   - git
   - python-devel
-  - python-pip
   - "@Development tools"
 
 jenkins_pkg_url: "http://pkg.jenkins.io/redhat-stable/{{ jenkins_rpm_pkg }}"
