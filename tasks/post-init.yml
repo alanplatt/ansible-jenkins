@@ -1,5 +1,23 @@
 ---
 
+- name: Create jobdsl dir for dslscriptloader.groovy
+  file:
+    path:  "{{ jenkins_jobdsl_scripts_dir }}"
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
+    mode:  0755
+    state: directory
+
+- name: Copy jobdsl scripts for dslscriptloader.groovy
+  template:
+    src:   "{{ item }}"
+    dest:  "{{ jenkins_jobdsl_scripts_dir }}"
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
+    mode:  0644
+  with_items:
+    "{{ jenkins_jobdsl_scripts }}"
+
 # https://wiki.jenkins-ci.org/display/JENKINS/Post-initialization+script
 - name: Create jenkins post-initialization scripts dir
   file:
@@ -19,6 +37,7 @@
   with_items:
     - executors.groovy
     - set_slave_agent_port.groovy
+    - dslscriptloader.groovy
   notify: Restart jenkins
 
 # Trigger any pending restart handlers now so that post-init scripts can run 
