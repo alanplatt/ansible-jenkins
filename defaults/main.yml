@@ -9,6 +9,8 @@ jenkins_admin_pass:
 
 jenkins_helper_scripts_dir:    "{{ jenkins_home }}/scripts"
 jenkins_post_init_scripts_dir: "{{ jenkins_home }}/init.groovy.d"
+jenkins_jobdsl_scripts_dir:    "{{ jenkins_home }}/jobdsl"
+jenkins_jobdsl_scripts:        []
 
 ###########################
 ## Config - Jenkins Master

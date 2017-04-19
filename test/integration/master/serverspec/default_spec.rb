@@ -82,6 +82,13 @@ end
   end
 end
 
+describe file('/mnt/jenkins/jobs/hello') do
+  it { should be_directory }
+  it { should be_mode 755 }
+  it { should be_owned_by jenkins_user }
+  it { should be_grouped_into jenkins_group }
+end
+
 ###################
 # jenkins ui users
 ###################
