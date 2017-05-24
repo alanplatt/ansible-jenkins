@@ -28,6 +28,18 @@
     state: directory
 
 - name: Copy jenkins post-init scripts
+  copy:
+    src:   "{{ item }}"
+    dest:  "{{ jenkins_post_init_scripts_dir }}/{{ item }}"
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
+    mode:  0755
+  with_items:
+    - dslscriptloader.groovy
+    - add-global-environment-variables.groovy
+  notify: Restart jenkins
+
+- name: Copy and Parse jenkins post-init script templates
   template:
     src:   "{{ item }}.j2"
     dest:  "{{ jenkins_post_init_scripts_dir }}/{{ item }}"
@@ -37,10 +49,9 @@
   with_items:
     - executors.groovy
     - set_slave_agent_port.groovy
-    - dslscriptloader.groovy
   notify: Restart jenkins
 
-# Trigger any pending restart handlers now so that post-init scripts can run 
+# Trigger any pending restart handlers now so that post-init scripts can run
 # after Jenkins starts up. This is necessary for jenkins-cli commands to work
 - meta: flush_handlers
 
