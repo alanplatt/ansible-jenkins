@@ -82,7 +82,7 @@ end
   end
 end
 
-describe file('/mnt/jenkins/jobs/hello') do
+describe file('/mnt/jenkins/jobs/seed') do
   it { should be_directory }
   it { should be_mode 755 }
   it { should be_owned_by jenkins_user }
